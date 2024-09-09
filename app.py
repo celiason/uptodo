@@ -16,6 +16,7 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
     completed = db.Column(db.Integer, default=0)
+    votes = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
@@ -27,7 +28,6 @@ def index():
     if request.method == 'POST':
         task_content = request.form['content']
         new_task = Todo(content=task_content)
-
         try:
             db.session.add(new_task)
             db.session.commit()
@@ -35,14 +35,15 @@ def index():
         except:
             return 'There was an issue adding this task!'
     else:
-        tasks = Todo.query.order_by(Todo.date_created).all() # ordering all todos in db
+        # ordering todos in db
+        # tasks = Todo.query.order_by(Todo.date_created).all()
+        tasks = Todo.query.order_by(Todo.votes.desc())
         return render_template('index.html', tasks=tasks)
 
 # delete tasks
 @app.route('/delete/<int:id>')
 def delete(id:int):
     task_to_delete = Todo.query.get_or_404(id)
-
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
@@ -54,7 +55,6 @@ def delete(id:int):
 @app.route('/edit/<int:id>', methods=["GET","POST"])
 def edit(id:int):
     task = Todo.query.get_or_404(id)
-    
     if request.method == "POST":
         task.content = request.form['content']
         try:
@@ -64,6 +64,31 @@ def edit(id:int):
             return 'There was a problem editing that task'
     else:
         return render_template('edit.html', task=task)
+
+# upvote tasks
+@app.route('/upvote/<int:id>')
+def upvote(id:int):
+    task = Todo.query.get_or_404(id)
+    try:
+        task.votes = task.votes + 1
+        db.session.commit()
+        return redirect('/')
+    except:
+        return redirect('/')
+
+# downvote tasks
+@app.route('/downvote/<int:id>')
+def downvote(id:int):
+    task = Todo.query.get_or_404(id)
+    try:
+        task.votes = task.votes - 1
+        db.session.commit()
+        return redirect('/')
+    except:
+        return redirect('/')
+
+# tag tasks
+
 
 # run the app
 if __name__ == '__main__':

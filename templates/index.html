@@ -9,12 +9,20 @@
     <h1 style="text-align: center;">Tasker</h1>
     <table>
         <tr>
+            <th>Voting</th>
+            <th>Votes</th>
             <th>Task</th>
             <th>Added</th>
             <th>Actions</th>
         </tr>
         {% for task in tasks %}
             <tr>
+                <td>
+                    <a href="/upvote/{{task.id}}">+1</a>
+                    <br>
+                    <a href="/downvote/{{task.id}}">-1</a>
+                </td>
+                <td>{{ task.votes }}</td>
                 <td>{{ task.content }}</td>
                 <td>{{ task.date_created.date() }}</td>
                 <td>
@@ -22,7 +30,6 @@
                     <br>
                     <a href="/edit/{{task.id}}">edit</a>
                 </td>
-
             </tr>
         {% endfor %}
     </table>
