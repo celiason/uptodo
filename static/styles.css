@@ -1,0 +1,48 @@
+.body {
+  margin: 0;
+  padding: 10px;
+  font-family: sans-serif;
+  background-color: #398B93;
+}
+
+.content {
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 10px;
+  width: 80%;
+}
+.content h1 {
+  color: #398B93;
+}
+.content form {
+  margin-top: 40px;
+}
+.content table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+.content table td, .content table th {
+  color: #2b686e;
+  padding: 10px;
+}
+.content table td {
+  text-align: center;
+  vertical-align: middle;
+}
+.content table td:last-child {
+  font-size: 0.95em;
+  line-height: 1.4;
+  text-align: left;
+}
+.content table th {
+  background-color: #daeff1;
+  font-weight: 300;
+}
+.content table tr:nth-child(2n) {
+  background-color: white;
+}
+.content table tr:nth-child(2n+1) {
+  background-color: #edf7f8;
+}/*# sourceMappingURL=styles.css.map */

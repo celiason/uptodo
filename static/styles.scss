@@ -1,0 +1,70 @@
+$baseColor: #398B93;
+$borderRadius: 10px;
+$padding: 10px;
+
+.body {
+   margin: 0;
+    padding: $padding;
+    font-family: sans-serif;
+    background-color: $baseColor;
+   }
+
+.content {
+
+      background-color: white;
+      border-radius: $borderRadius;
+      margin: 0 auto;
+      padding: $padding;
+      width: 80%;
+
+      h1 {
+         color: $baseColor;
+      }
+
+      form {
+         margin-top: 40px;
+      }
+
+      table {
+     
+         width: 100%;
+         margin-top: 20px;
+         border-collapse: collapse;
+         
+         td, th { 
+            color: darken($baseColor, 10%);
+            padding: $padding; 
+         }
+         
+         td {
+            text-align: center;
+            vertical-align: middle;
+            
+            &:last-child {
+               font-size: 0.95em;
+               line-height: 1.4;
+               text-align: left;
+            }
+         }
+         
+         th { 
+            background-color: lighten($baseColor, 50%);
+            font-weight: 300;
+         }
+         
+         tr {     
+            &:nth-child(2n) { background-color: white; }
+            &:nth-child(2n+1) { background-color: lighten($baseColor, 55%) }
+         }
+      }     
+   }
+
+// .header {
+//     background-color: darken($baseColor, 5%);
+//     color: white;
+//     font-size: 1.5em;
+//     padding: 1rem;
+//     text-align: center;
+//     text-transform: uppercase;
+//  }
+
